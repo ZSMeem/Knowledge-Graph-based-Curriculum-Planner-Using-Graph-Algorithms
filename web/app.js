@@ -41,6 +41,8 @@ async function loadGraph() {
   const container = document.getElementById('network');
   const networkData = { nodes, edges };
   const options = {
+    width: '100%',
+    height: '100%',
     interaction: {
       hover: true,
       dragNodes: true,
@@ -80,6 +82,26 @@ async function loadGraph() {
   network.once('stabilizationIterationsDone', () => {
     network.setOptions({ physics: { enabled: false } });
   });
+
+  displayCourseSequence(data);
+}
+
+function displayCourseSequence(data) {
+  const courseList = document.getElementById('course-list');
+  courseList.innerHTML = '';
+
+  if (data.topological_order && data.topological_order.length > 0) {
+    data.topological_order.forEach(courseId => {
+      const course = data.courses.find(c => c.course_id === courseId);
+      const li = document.createElement('li');
+      li.textContent = course ? `${course.course_id}: ${course.course_name}` : courseId;
+      courseList.appendChild(li);
+    });
+  } else {
+    const li = document.createElement('li');
+    li.textContent = 'No topological order available.';
+    courseList.appendChild(li);
+  }
 }
 
 loadGraph().catch(error => console.error('Failed to load graph:', error));
