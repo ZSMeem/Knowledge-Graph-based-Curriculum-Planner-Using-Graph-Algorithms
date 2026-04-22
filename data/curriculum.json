@@ -31,12 +31,6 @@
     {"course": "CSCI8910", "offered": "Spring"}
   ],
   "kg_edges": [
-    {"source": "CIST1400", "relation": "prerequisite_of", "target": "CSCI1620"},
-    {"source": "CIST1400", "relation": "prerequisite_of", "target": "CSCI2030"},
-    {"source": "CSCI1620", "relation": "prerequisite_of", "target": "CSCI3320"},
-    {"source": "CSCI2030", "relation": "prerequisite_of", "target": "CSCI3320"},
-    {"source": "CSCI3320", "relation": "prerequisite_of", "target": "CSCI3660"},
-    {"source": "CSCI3320", "relation": "prerequisite_of", "target": "CSCI3710"},
     {"source": "CSCI8700", "relation": "required_for", "target": "CSCI8910"},
     {"source": "CSCI8080", "relation": "required_for", "target": "CSCI8910"}
   ]

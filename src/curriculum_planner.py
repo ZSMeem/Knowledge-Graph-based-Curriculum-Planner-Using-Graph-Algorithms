@@ -65,14 +65,27 @@ class CurriculumPlanner:
         :param show: If True, display the plot interactively after saving
         """
         graph = self.kg if show_kg else self.graph
-        pos = nx.spring_layout(graph)
-        nx.draw(graph, pos, with_labels=True, node_color='lightblue', node_size=2000, font_size=10, font_weight='bold')
+        num_nodes = graph.number_of_nodes()
+        figsize = (max(10, num_nodes * 0.8), max(8, num_nodes * 0.6))
+        plt.figure(figsize=figsize)
+
+        try:
+            pos = nx.nx_agraph.graphviz_layout(graph, prog='dot')
+        except Exception:
+            k = 2.0 / (num_nodes ** 0.5) if num_nodes > 0 else 1.0
+            pos = nx.spring_layout(graph, k=k, iterations=200)
+
+        nx.draw_networkx_nodes(graph, pos, node_color='lightblue', node_size=2000)
+        nx.draw_networkx_labels(graph, pos, font_size=10, font_weight='bold')
+        nx.draw_networkx_edges(graph, pos, arrows=True)
 
         edge_labels = nx.get_edge_attributes(graph, 'relation')
         if edge_labels:
             nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_labels, font_color='gray')
 
         plt.title("Curriculum Knowledge Graph" if show_kg else "Curriculum Prerequisite Graph")
+        plt.axis('off')
+        plt.tight_layout()
         plt.savefig(filename)
         if show:
             plt.show()

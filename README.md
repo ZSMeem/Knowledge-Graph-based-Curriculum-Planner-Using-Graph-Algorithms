@@ -47,6 +47,23 @@ Run the sample loader script:
 python -m src.run_planner
 ```
 
+## Frontend
+
+A simple interactive frontend is available in `web/index.html`. To run it locally:
+
+```sh
+cd /Users/zerinshaimameem/Desktop/Curriculum-Scheduling
+python3 -m http.server 8000
+```
+
+Then open:
+
+```text
+http://localhost:8000/web/index.html
+```
+
+You can drag nodes to reposition the graph.
+
 ## Requirements
 
 - Python 3.6+
