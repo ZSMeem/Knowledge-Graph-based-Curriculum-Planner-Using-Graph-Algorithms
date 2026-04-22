@@ -2,6 +2,8 @@ async function loadGraph() {
   const response = await fetch('../data/curriculum.json');
   const data = await response.json();
 
+  populateTable(data);
+
   const nodes = data.courses.map(course => ({
     id: course.course_id,
     label: course.course_id,
@@ -81,9 +83,31 @@ async function loadGraph() {
 
   network.once('stabilizationIterationsDone', () => {
     network.setOptions({ physics: { enabled: false } });
+    network.fit();
   });
 
   displayCourseSequence(data);
+}
+
+function populateTable(data) {
+  const tbody = document.querySelector('#curriculum-table tbody');
+  tbody.innerHTML = '';
+
+  data.courses.forEach(course => {
+    const prereqs = data.prerequisites.filter(p => p.course === course.course_id).map(p => p.prerequisite).join(', ');
+    const offered = data.offered.find(o => o.course === course.course_id)?.offered || 'N/A';
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${course.course_id}</td>
+      <td>${course.course_name}</td>
+      <td>${course.type}</td>
+      <td>${course.credits}</td>
+      <td>${prereqs || 'None'}</td>
+      <td>${offered}</td>
+    `;
+    tbody.appendChild(row);
+  });
 }
 
 function displayCourseSequence(data) {
@@ -103,5 +127,16 @@ function displayCourseSequence(data) {
     courseList.appendChild(li);
   }
 }
+
+// Navigation
+document.getElementById('curriculum-link').addEventListener('click', () => {
+  document.getElementById('curriculum-section').style.display = 'block';
+  document.getElementById('suggestion-section').style.display = 'none';
+});
+
+document.getElementById('suggestion-link').addEventListener('click', () => {
+  document.getElementById('curriculum-section').style.display = 'none';
+  document.getElementById('suggestion-section').style.display = 'block';
+});
 
 loadGraph().catch(error => console.error('Failed to load graph:', error));

@@ -12,10 +12,32 @@
     <h1>Interactive Curriculum Knowledge Graph</h1>
     <p>Drag nodes to reposition the graph.</p>
   </div>
-  <div id="network"></div>
-  <div id="sequence">
-    <h2>Recommended Course Sequence</h2>
-    <ol id="course-list"></ol>
+  <nav>
+    <a href="#" id="curriculum-link">Course Curriculum</a>
+    <a href="#" id="suggestion-link">Suggestion</a>
+  </nav>
+  <div id="curriculum-section">
+    <h2>Course Curriculum</h2>
+    <table id="curriculum-table">
+      <thead>
+        <tr>
+          <th>Course Code</th>
+          <th>Course Name</th>
+          <th>Type</th>
+          <th>Credits</th>
+          <th>Prerequisite Courses</th>
+          <th>Offered Semester</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div id="suggestion-section" style="display: none;">
+    <div id="network"></div>
+    <div id="sequence">
+      <h2>Recommended Course Sequence</h2>
+      <ol id="course-list"></ol>
+    </div>
   </div>
   <script src="app.js"></script>
 </body>

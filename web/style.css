@@ -22,13 +22,11 @@ body {
   padding: 16px;
   background: white;
   border-top: 1px solid #d9d9d9;
-  overflow: hidden;
 }
 
 #sequence h2 {
   margin-top: 0;
   color: #2b3e50;
-  overflow: hidden;
 }
 
 #course-list {
@@ -37,4 +35,42 @@ body {
 
 p {
   margin: 0.5rem 0 0;
+}
+
+nav {
+  background: #3a506b;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background: #2c3e50;
+}
+
+#curriculum-section {
+  padding: 16px;
+}
+
+#curriculum-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#curriculum-table th, #curriculum-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#curriculum-table th {
+  background: #f2f2f2;
 }
