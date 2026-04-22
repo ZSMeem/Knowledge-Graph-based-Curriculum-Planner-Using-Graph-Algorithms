@@ -1,0 +1,43 @@
+{
+  "courses": [
+    {"course_id": "CIST1400", "course_name": "Intro to Comp Programming", "type": "transition", "credits": 3},
+    {"course_id": "CSCI1620", "course_name": "Intro to Computer Science II", "type": "transition", "credits": 3},
+    {"course_id": "CSCI2030", "course_name": "Math Foundations of CS", "type": "transition", "credits": 3},
+    {"course_id": "CSCI3320", "course_name": "Data Structures", "type": "transition", "credits": 3},
+    {"course_id": "CSCI3660", "course_name": "Theory of Computation", "type": "transition", "credits": 3},
+    {"course_id": "CSCI3710", "course_name": "Intro to Digital Design", "type": "transition", "credits": 3},
+    {"course_id": "CSCI8700", "course_name": "Software Specification and Design", "type": "core", "credits": 3},
+    {"course_id": "CSCI8530", "course_name": "Advanced Operating Systems", "type": "core", "credits": 3},
+    {"course_id": "CSCI8150", "course_name": "Advanced Computer Architecture", "type": "core", "credits": 3},
+    {"course_id": "CSCI8000", "course_name": "Advanced Concepts in Programming Languages", "type": "core", "credits": 3},
+    {"course_id": "CSCI8080", "course_name": "Design and Analysis of Algorithms", "type": "core", "credits": 3},
+    {"course_id": "CSCI8910", "course_name": "Capstone", "type": "capstone", "credits": 3}
+  ],
+  "prerequisites": [
+    {"course": "CSCI1620", "prerequisite": "CIST1400"},
+    {"course": "CSCI2030", "prerequisite": "CIST1400"},
+    {"course": "CSCI3320", "prerequisite": "CSCI1620"},
+    {"course": "CSCI3320", "prerequisite": "CSCI2030"},
+    {"course": "CSCI3660", "prerequisite": "CSCI3320"},
+    {"course": "CSCI3710", "prerequisite": "CSCI3320"},
+    {"course": "CSCI8700", "prerequisite": "CSCI8836"}
+  ],
+  "offered": [
+    {"course": "CSCI8700", "offered": "Fall"},
+    {"course": "CSCI8530", "offered": "Spring"},
+    {"course": "CSCI8150", "offered": "Fall"},
+    {"course": "CSCI8000", "offered": "Spring"},
+    {"course": "CSCI8080", "offered": "Fall"},
+    {"course": "CSCI8910", "offered": "Spring"}
+  ],
+  "kg_edges": [
+    {"source": "CIST1400", "relation": "prerequisite_of", "target": "CSCI1620"},
+    {"source": "CIST1400", "relation": "prerequisite_of", "target": "CSCI2030"},
+    {"source": "CSCI1620", "relation": "prerequisite_of", "target": "CSCI3320"},
+    {"source": "CSCI2030", "relation": "prerequisite_of", "target": "CSCI3320"},
+    {"source": "CSCI3320", "relation": "prerequisite_of", "target": "CSCI3660"},
+    {"source": "CSCI3320", "relation": "prerequisite_of", "target": "CSCI3710"},
+    {"source": "CSCI8700", "relation": "required_for", "target": "CSCI8910"},
+    {"source": "CSCI8080", "relation": "required_for", "target": "CSCI8910"}
+  ]
+}
