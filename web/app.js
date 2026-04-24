@@ -188,18 +188,138 @@ function displayCourseSequence(data) {
   const activeIds = new Set(activeCourses.map(course => course.course_id));
   const filteredOrder = data.topological_order.filter(courseId => activeIds.has(courseId));
 
-  if (filteredOrder && filteredOrder.length > 0) {
-    filteredOrder.forEach(courseId => {
-      const course = data.courses.find(c => c.course_id === courseId);
-      const li = document.createElement('li');
-      li.textContent = course ? `${course.course_id}: ${course.course_name}` : courseId;
-      courseList.appendChild(li);
-    });
-  } else {
+  // Build a semester schedule
+  const semesterSchedule = buildSemesterSchedule(data, filteredOrder, activeIds);
+
+  // Display semester-wise schedule
+  const semesterNames = ['Fall (Year 1)', 'Spring (Year 1)', 'Fall (Year 2)', 'Spring (Year 2)'];
+
+  semesterNames.forEach((semesterName, index) => {
+    const semesterCourses = semesterSchedule[index] || [];
+
+    // Skip empty semesters
+    if (semesterCourses.length === 0) return;
+
+    // Create semester heading (without credits)
     const li = document.createElement('li');
-    li.textContent = 'No topological order available.';
+    li.style.fontWeight = 'bold';
+    li.style.marginTop = '10px';
+    li.style.color = '#2b3e50';
+    li.textContent = semesterName;
     courseList.appendChild(li);
+
+    // List courses in this semester
+    semesterCourses.forEach(courseId => {
+      const course = data.courses.find(c => c.course_id === courseId);
+      const subLi = document.createElement('li');
+      subLi.style.marginLeft = '20px';
+      subLi.style.color = '#555';
+      subLi.style.display = 'flex';
+      subLi.style.alignItems = 'center';
+      subLi.style.gap = '8px';
+
+      const courseText = course ? `${course.course_id}: ${course.course_name} (${course.credits} cr)` : courseId;
+      subLi.textContent = courseText;
+
+      // Add type badge
+      if (course) {
+        const badge = document.createElement('span');
+        badge.style.fontSize = '11px';
+        badge.style.fontWeight = 'bold';
+        badge.style.padding = '2px 6px';
+        badge.style.borderRadius = '3px';
+        badge.style.whiteSpace = 'nowrap';
+
+        const isCore = course.type === 'core' || course.type === 'capstone';
+        const isConcentrationRequired = selectedConcentration !== 'none' && 
+          (course.concentrations || []).includes(selectedConcentration) && 
+          !isCore;
+
+        if (isCore) {
+          badge.style.backgroundColor = '#ffcdd2';
+          badge.style.color = '#c62828';
+          badge.textContent = 'Core';
+          subLi.appendChild(badge);
+        } else if (isConcentrationRequired) {
+          badge.style.backgroundColor = '#c8e6c9';
+          badge.style.color = '#2e7d32';
+          badge.textContent = 'Required';
+          subLi.appendChild(badge);
+        }
+      }
+
+      courseList.appendChild(subLi);
+    });
+  });
+}
+
+function buildSemesterSchedule(data, orderedCourses, activeIds) {
+  const semesterSchedule = [[], [], [], []];
+  const takenCourses = new Set();
+  let semesterIndex = 0;
+
+  // Map courses to their offered semesters
+  const courseToSemesters = {};
+  data.offered.forEach(offering => {
+    if (!courseToSemesters[offering.course]) {
+      courseToSemesters[offering.course] = offering.offered;
+    }
+  });
+
+  // Map prerequisites
+  const coursePrereqs = {};
+  data.prerequisites.forEach(prereq => {
+    if (!coursePrereqs[prereq.course]) {
+      coursePrereqs[prereq.course] = [];
+    }
+    coursePrereqs[prereq.course].push(prereq.prerequisite);
+  });
+
+  const semesterCycle = ['Fall', 'Spring', 'Fall', 'Spring'];
+
+  // Assign courses to semesters
+  for (const courseId of orderedCourses) {
+    if (!activeIds.has(courseId)) continue;
+
+    const course = data.courses.find(c => c.course_id === courseId);
+    if (!course) continue;
+
+    // Check prerequisites are satisfied
+    const prereqs = coursePrereqs[courseId] || [];
+    const allPreqsMet = prereqs.every(p => takenCourses.has(p));
+    if (!allPreqsMet) continue;
+
+    // Find best semester for this course
+    const offered = courseToSemesters[courseId] || '';
+    let bestSemester = semesterIndex;
+
+    // Try to match offered semester
+    if (offered.includes(semesterCycle[semesterIndex % 4])) {
+      bestSemester = semesterIndex;
+    } else {
+      // Find next matching semester
+      for (let i = 1; i < 4; i++) {
+        const checkSem = (semesterIndex + i) % 4;
+        if (offered.includes(semesterCycle[checkSem]) || offered === '' || offered === 'All') {
+          bestSemester = semesterIndex + i;
+          break;
+        }
+      }
+    }
+
+    const targetSem = bestSemester % 4;
+    if (targetSem < 4) {
+      semesterSchedule[targetSem].push(courseId);
+      takenCourses.add(courseId);
+
+      // Move to next semester if needed
+      if (bestSemester >= semesterIndex) {
+        semesterIndex = bestSemester + 1;
+      }
+    }
   }
+
+  return semesterSchedule;
 }
 
 // Navigation

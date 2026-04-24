@@ -33,6 +33,11 @@ body {
   padding-left: 20px;
 }
 
+#course-list li {
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
 p {
   margin: 0.5rem 0 0;
 }
