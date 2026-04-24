@@ -18,13 +18,42 @@ async function fetchCurriculumData() {
   throw lastError || new Error('Failed to fetch curriculum data');
 }
 
+let loadedData = null;
+let selectedConcentration = 'none';
+
 async function loadGraph() {
   try {
     const data = await fetchCurriculumData();
+    loadedData = data;
 
     populateTable(data);
+    populateConcentrationDropdown(data);
+    renderNetwork(data);
+    displayCourseSequence(data);
+  } catch (error) {
+    console.error('Failed to load curriculum data:', error);
+    alert('Could not load curriculum data. Check server or file path.');
+  }
+}
 
-  const nodes = data.courses.map(course => ({
+function getFilteredCourses(data) {
+  if (selectedConcentration === 'none') {
+    return data.courses;
+  }
+
+  return data.courses.filter(course => {
+    const isCore = course.type === 'core' || course.type === 'capstone';
+    const hasNoConcentration = !course.concentrations || course.concentrations.length === 0;
+    const matchesConcentration = (course.concentrations || []).includes(selectedConcentration);
+    return isCore || hasNoConcentration || matchesConcentration;
+  });
+}
+
+function renderNetwork(data) {
+  const filteredCourses = getFilteredCourses(data);
+  const visibleIds = new Set(filteredCourses.map(course => course.course_id));
+
+  const nodes = filteredCourses.map(course => ({
     id: course.course_id,
     label: course.course_id,
     title: `${course.course_name}\n${course.type} (${course.credits} credits)`,
@@ -36,7 +65,7 @@ async function loadGraph() {
   const edges = [];
 
   data.prerequisites.forEach(entry => {
-    if (entry.course && entry.prerequisite) {
+    if (entry.course && entry.prerequisite && visibleIds.has(entry.course) && visibleIds.has(entry.prerequisite)) {
       edges.push({
         from: entry.prerequisite,
         to: entry.course,
@@ -48,7 +77,7 @@ async function loadGraph() {
   });
 
   data.kg_edges.forEach(entry => {
-    if (entry.source && entry.relation && entry.target) {
+    if (entry.source && entry.relation && entry.target && visibleIds.has(entry.source) && visibleIds.has(entry.target)) {
       edges.push({
         from: entry.source,
         to: entry.target,
@@ -99,18 +128,34 @@ async function loadGraph() {
     },
   };
 
-  const network = new vis.Network(container, networkData, options);
+  new vis.Network(container, networkData, options);
+}
 
-  network.once('stabilizationIterationsDone', () => {
-    network.setOptions({ physics: { enabled: false } });
-    network.fit();
+function populateConcentrationDropdown(data) {
+  const select = document.getElementById('concentration-select');
+  select.innerHTML = '<option value="none">None</option>';
+
+  const concentrations = new Set();
+  data.courses.forEach(course => {
+    const list = course.concentrations || [];
+    list.forEach(c => concentrations.add(c));
   });
 
-  displayCourseSequence(data);
-  } catch (error) {
-    console.error('Failed to load curriculum data:', error);
-    alert('Could not load curriculum data. Check server or file path.');
-  }
+  const sorted = Array.from(concentrations).sort();
+  sorted.forEach(concentration => {
+    const option = document.createElement('option');
+    option.value = concentration;
+    option.textContent = concentration;
+    select.appendChild(option);
+  });
+
+  select.addEventListener('change', () => {
+    selectedConcentration = select.value;
+    if (loadedData) {
+      renderNetwork(loadedData);
+      displayCourseSequence(loadedData);
+    }
+  });
 }
 
 function populateTable(data) {
@@ -139,8 +184,12 @@ function displayCourseSequence(data) {
   const courseList = document.getElementById('course-list');
   courseList.innerHTML = '';
 
-  if (data.topological_order && data.topological_order.length > 0) {
-    data.topological_order.forEach(courseId => {
+  const activeCourses = getFilteredCourses(data);
+  const activeIds = new Set(activeCourses.map(course => course.course_id));
+  const filteredOrder = data.topological_order.filter(courseId => activeIds.has(courseId));
+
+  if (filteredOrder && filteredOrder.length > 0) {
+    filteredOrder.forEach(courseId => {
       const course = data.courses.find(c => c.course_id === courseId);
       const li = document.createElement('li');
       li.textContent = course ? `${course.course_id}: ${course.course_name}` : courseId;
