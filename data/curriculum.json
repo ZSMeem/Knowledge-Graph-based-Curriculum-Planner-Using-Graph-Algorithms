@@ -40,7 +40,10 @@
       "course_id": "CSCI8700",
       "course_name": "Software Specification and Design",
       "type": "core",
-      "credits": 3
+      "credits": 3,
+      "concentrations": [
+        "Software Engineering"
+      ]
     },
     {
       "course_id": "CSCI8530",
@@ -71,6 +74,323 @@
       "course_name": "Capstone",
       "type": "capstone",
       "credits": 3
+    },
+    {
+      "course_id": "CSCI8210",
+      "course_name": "Advanced Communication Networks",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Network Technologies"
+      ]
+    },
+    {
+      "course_id": "CSCI8040",
+      "course_name": "Large Scale Network Analysis",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Network Technologies",
+        "Database & Knowledge Engineering",
+        "Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8156",
+      "course_name": "Graph Theory",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Network Technologies",
+        "Database & Knowledge Engineering",
+        "Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8410",
+      "course_name": "Distributed Systems and Network Security",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Network Technologies",
+        "Dependable Computing Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8610",
+      "course_name": "Fault Tolerant Distributed Systems",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Network Technologies",
+        "Dependable Computing Systems",
+        "Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8620",
+      "course_name": "Mobile Computing and Wireless Networks",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Network Technologies",
+        "Database & Knowledge Engineering",
+        "Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8456",
+      "course_name": "Introduction to Artificial Intelligence",
+      "type": "required",
+      "credits": 3,
+      "concentrations": [
+        "Artificial Intelligence"
+      ]
+    },
+    {
+      "course_id": "CSCI8110",
+      "course_name": "Advanced Topics in AI",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Artificial Intelligence"
+      ]
+    },
+    {
+      "course_id": "CSCI8300",
+      "course_name": "Image Processing and Computer Vision",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Artificial Intelligence"
+      ]
+    },
+    {
+      "course_id": "CSCI8450",
+      "course_name": "Advanced Topics in Natural Language Understanding",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Artificial Intelligence",
+        "Dependable Computing Systems",
+        "Database & Knowledge Engineering",
+        "Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8476",
+      "course_name": "Pattern Recognition",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Artificial Intelligence"
+      ]
+    },
+    {
+      "course_id": "CSCI8480",
+      "course_name": "Multiagent Systems and Game Theory",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Artificial Intelligence"
+      ]
+    },
+    {
+      "course_id": "CSCI8486",
+      "course_name": "Algorithms for Robotics",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Artificial Intelligence"
+      ]
+    },
+    {
+      "course_id": "CSCI8590",
+      "course_name": "Fundamentals of Robotics",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Artificial Intelligence"
+      ]
+    },
+    {
+      "course_id": "CSCI8256",
+      "course_name": "Human-Computer Interaction",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Software Engineering"
+      ]
+    },
+    {
+      "course_id": "CSCI8266",
+      "course_name": "UI Design and Development",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Software Engineering"
+      ]
+    },
+    {
+      "course_id": "CSCI8420",
+      "course_name": "Software Assurance",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Software Engineering",
+        "Dependable Computing Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8430",
+      "course_name": "Trusted System Design, Analysis and Development",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Software Engineering",
+        "Dependable Computing Systems",
+        "Database & Knowledge Engineering",
+        "Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8710",
+      "course_name": "Modern Software Development Methods",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Software Engineering"
+      ]
+    },
+    {
+      "course_id": "CSCI8760",
+      "course_name": "Formal Methods for High Assurance Software",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Software Engineering",
+        "Dependable Computing Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8790",
+      "course_name": "Advanced Topics in Software Engineering",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Software Engineering"
+      ]
+    },
+    {
+      "course_id": "CYBR8436",
+      "course_name": "Quantum Computing and Cryptography",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Dependable Computing Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8440",
+      "course_name": "Secure Systems Engineering",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Dependable Computing Systems",
+        "Database & Knowledge Engineering",
+        "Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8856",
+      "course_name": "Database Management Systems",
+      "type": "required",
+      "credits": 3,
+      "concentrations": [
+        "Database & Knowledge Engineering"
+      ]
+    },
+    {
+      "course_id": "CSCI8340",
+      "course_name": "Database Management Systems II",
+      "type": "required",
+      "credits": 3,
+      "concentrations": [
+        "Database & Knowledge Engineering"
+      ]
+    },
+    {
+      "course_id": "CSCI8360",
+      "course_name": "Machine Learning for Text",
+      "type": "required",
+      "credits": 3,
+      "concentrations": [
+        "Database & Knowledge Engineering"
+      ]
+    },
+    {
+      "course_id": "CSCI8350",
+      "course_name": "Data Warehousing and Mining",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Database & Knowledge Engineering"
+      ]
+    },
+    {
+      "course_id": "CSCI8390",
+      "course_name": "Advanced Topics in Database Management Systems",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Database & Knowledge Engineering"
+      ]
+    },
+    {
+      "course_id": "CSCI8876",
+      "course_name": "Database Search and Pattern Discovery",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Database & Knowledge Engineering"
+      ]
+    },
+    {
+      "course_id": "CSCI8160",
+      "course_name": "Introduction to VLSI Design",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8446",
+      "course_name": "Introduction to Parallel Computing",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8706",
+      "course_name": "Compiler Construction",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Systems"
+      ]
+    },
+    {
+      "course_id": "CSCI8626",
+      "course_name": "Computer Graphics",
+      "type": "elective",
+      "credits": 3,
+      "concentrations": [
+        "Database & Knowledge Engineering",
+        "Systems"
+      ]
     }
   ],
   "prerequisites": [
@@ -100,21 +420,57 @@
     },
     {
       "course": "CSCI8700",
-      "prerequisite": "CSCI8836"
+      "prerequisite": "CSCI8080"
+    },
+    {
+      "course": "CSCI8256",
+      "prerequisite": "CSCI8700"
+    },
+    {
+      "course": "CSCI8456",
+      "prerequisite": "CSCI8080"
+    },
+    {
+      "course": "CSCI8340",
+      "prerequisite": "CSCI8856"
     }
   ],
   "offered": [
+    {
+      "course": "CIST1400",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI1620",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI2030",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI3320",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI3660",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI3710",
+      "offered": "Spring"
+    },
     {
       "course": "CSCI8700",
       "offered": "Fall"
     },
     {
       "course": "CSCI8530",
-      "offered": "Spring"
+      "offered": "Fall"
     },
     {
       "course": "CSCI8150",
-      "offered": "Fall"
+      "offered": "Spring"
     },
     {
       "course": "CSCI8000",
@@ -126,6 +482,98 @@
     },
     {
       "course": "CSCI8910",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI8210",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI8040",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI8156",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI8410",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI8610",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI8620",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI8456",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI8300",
+      "offered": ""
+    },
+    {
+      "course": "CSCI8450",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI8480",
+      "offered": ""
+    },
+    {
+      "course": "CSCI8256",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI8420",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI8430",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI8710",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI8760",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI8790",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI8856",
+      "offered": "All"
+    },
+    {
+      "course": "CSCI8340",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI8360",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI8350",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI8390",
+      "offered": "Fall"
+    },
+    {
+      "course": "CSCI8876",
+      "offered": "Spring"
+    },
+    {
+      "course": "CSCI8626",
       "offered": "Spring"
     }
   ],
@@ -139,21 +587,68 @@
       "source": "CSCI8080",
       "relation": "required_for",
       "target": "CSCI8910"
+    },
+    {
+      "source": "CSCI8456",
+      "relation": "foundation_for",
+      "target": "CSCI8110"
+    },
+    {
+      "source": "CSCI8456",
+      "relation": "foundation_for",
+      "target": "CSCI8300"
+    },
+    {
+      "source": "CSCI8156",
+      "relation": "foundation_for",
+      "target": "CSCI8480"
     }
   ],
   "topological_order": [
     "CIST1400",
-    "CSCI8530",
-    "CSCI8150",
-    "CSCI8000",
-    "CSCI8080",
-    "CSCI8910",
-    "CSCI8836",
     "CSCI1620",
     "CSCI2030",
-    "CSCI8700",
     "CSCI3320",
     "CSCI3660",
-    "CSCI3710"
+    "CSCI3710",
+    "CSCI8080",
+    "CSCI8000",
+    "CSCI8700",
+    "CSCI8150",
+    "CSCI8530",
+    "CSCI8450",
+    "CSCI8456",
+    "CSCI8040",
+    "CSCI8156",
+    "CSCI8210",
+    "CSCI8410",
+    "CSCI8610",
+    "CSCI8620",
+    "CSCI8110",
+    "CSCI8300",
+    "CSCI8476",
+    "CSCI8480",
+    "CSCI8486",
+    "CSCI8590",
+    "CSCI8256",
+    "CSCI8266",
+    "CSCI8420",
+    "CSCI8430",
+    "CSCI8710",
+    "CSCI8760",
+    "CSCI8790",
+    "CYBR8436",
+    "CSCI8440",
+    "CSCI8856",
+    "CSCI8340",
+    "CSCI8360",
+    "CSCI8350",
+    "CSCI8390",
+    "CSCI8876",
+    "CSCI8160",
+    "CSCI8446",
+    "CSCI8706",
+    "CSCI8626",
+    "CSCI8910"
   ]
 }

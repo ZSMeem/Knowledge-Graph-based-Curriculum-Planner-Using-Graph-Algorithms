@@ -1,8 +1,28 @@
-async function loadGraph() {
-  const response = await fetch('../data/curriculum.json');
-  const data = await response.json();
+async function fetchCurriculumData() {
+  const sources = ['/api/curriculum', '../data/curriculum.json', 'data/curriculum.json'];
+  let lastError = null;
 
-  populateTable(data);
+  for (const source of sources) {
+    try {
+      const response = await fetch(source);
+      if (!response.ok) {
+        lastError = new Error(`Failed to load curriculum from ${source}: ${response.status}`);
+        continue;
+      }
+      return await response.json();
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError || new Error('Failed to fetch curriculum data');
+}
+
+async function loadGraph() {
+  try {
+    const data = await fetchCurriculumData();
+
+    populateTable(data);
 
   const nodes = data.courses.map(course => ({
     id: course.course_id,
@@ -87,6 +107,10 @@ async function loadGraph() {
   });
 
   displayCourseSequence(data);
+  } catch (error) {
+    console.error('Failed to load curriculum data:', error);
+    alert('Could not load curriculum data. Check server or file path.');
+  }
 }
 
 function populateTable(data) {
@@ -102,6 +126,7 @@ function populateTable(data) {
       <td>${course.course_id}</td>
       <td>${course.course_name}</td>
       <td>${course.type}</td>
+      <td>${(course.concentrations || []).join(', ') || 'None'}</td>
       <td>${course.credits}</td>
       <td>${prereqs || 'None'}</td>
       <td>${offered}</td>
